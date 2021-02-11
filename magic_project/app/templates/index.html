@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site</title>
+    <style>
+        body{
+            background-color: #323030;
+            color: #323030;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif'
+        }
+        .container{
+            background-color: #C29545;
+            max-width: 70%;
+            margin: 5% 15%;
+            padding: 20px;
+            min-height: 400px;
+        }
+        #emailForm{
+            background-color: #882426;
+            color:white;
+            padding: 30px;
+            max-width: 500px;
+            margin-left: inherit;
+            
+        }
+        input{
+            outline: none;
+            border:none;
+        }
+        #id_email{
+            background-color: #882426;
+            border-bottom: 1px white solid;
+            color: white;
+            
+        }
+        #id_email:hover{
+            background-color: #884344;
+        }
+        .submit-form{
+            margin-left: 25%;
+            width: 40%;
+            background-color: #C29545;
+            height: 30px;
+            color: #323030;
+        }
+        .submit-form:hover{
+            background-color: #c0a068;
+            cursor: pointer;
+        }
+        form p{
+            margin-left: 19%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" >
+    <h1 align='center'>Welcome!</h1>
+    {%if form%}
+    <h3 align='center'>Please, input your email to continue:</h3>
+    <form action='/' method="POST" enctype="multipart/form-data" id="emailForm">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Yes!" class="submit-form">
+    </form>
+    {%endif%}
+
+    {%if views%}
+
+        <h5 align='right'>You visited that page {{views}} times</h5>
+        <h2 align='center'>So you here...</h2>
+    {%endif%}
+</div>
+</body>
+
+</html>
