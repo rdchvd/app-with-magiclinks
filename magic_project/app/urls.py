@@ -2,7 +2,6 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('', index),
-    path('<str:slug>', link),
-    
+    path("", index, name="main"),
+    path("<str:slug>", link),
 ]

@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0005_remove_user_magic_link'),
+        ("app", "0005_remove_user_magic_link"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='link',
-            name='slug',
+            model_name="link",
+            name="slug",
             field=models.CharField(blank=True, max_length=250),
         ),
     ]
