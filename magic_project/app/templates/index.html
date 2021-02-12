@@ -10,7 +10,8 @@
         body{
             background-color: #323030;
             color: #323030;
-            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif'
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align:center;
         }
         .container{
             background-color: #C29545;
@@ -20,7 +21,7 @@
             min-height: 400px;
         }
         #emailForm{
-            background-color: #882426;
+            background-color: #323030;
             color:white;
             padding: 30px;
             max-width: 500px;
@@ -31,50 +32,68 @@
             outline: none;
             border:none;
         }
+        a{
+            color: #882426;
+            text-decoration: none;
+        }
         #id_email{
-            background-color: #882426;
+            background-color: #323030;
             border-bottom: 1px white solid;
             color: white;
             
         }
         #id_email:hover{
-            background-color: #884344;
+            background-color: #1f1d1d;
         }
-        .submit-form{
-            margin-left: 25%;
+        #submit-form{
             width: 40%;
             background-color: #C29545;
             height: 30px;
-            color: #323030;
+            color: white;
         }
-        .submit-form:hover{
+        #submit-form:hover{
             background-color: #c0a068;
             cursor: pointer;
         }
-        form p{
-            margin-left: 19%;
-        }
+
     </style>
 </head>
 
 <body>
     <div class="container" >
-    <h1 align='center'>Welcome!</h1>
+     
+    <h1>Welcome!</h1>
+    <div id="msg"></div>
     {%if form%}
-    <h3 align='center'>Please, input your email to continue:</h3>
-    <form action='/' method="POST" enctype="multipart/form-data" id="emailForm">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Yes!" class="submit-form">
-    </form>
+        <h3>Please, input your email to continue:</h3>
+        <form action='/' method="POST" enctype="multipart/form-data" id="emailForm">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Yes!" id="submit-form">
+        </form>
     {%endif%}
 
     {%if views%}
 
         <h5 align='right'>You visited that page {{views}} times</h5>
-        <h2 align='center'>So you here...</h2>
+        <h2>So you here...</h2>
+    {%endif%}
+
+    {%if error%}
+    <h1>Sorry, page doesn`t exist</h1>
+    <h3><a href='{%url "main"%}'>Return to main page</a></h3>
     {%endif%}
 </div>
+
+<script>
+    const submitButton = document.getElementById('submit-form')
+    const wrapper = document.getElementById('msg')
+    submitButton.addEventListener('click', () =>{
+            wrapper.innerHTML = ''
+            wrapper.innerHTML += `Your link is waiting for you! Check email!`
+        })
+
+</script>
 </body>
 
 </html>
